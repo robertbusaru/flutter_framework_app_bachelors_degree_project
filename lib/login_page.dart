@@ -101,6 +101,21 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ),
                 ),
+                SizedBox(height: 5),
+                // Forgot password?
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                      "Forgot password? ",
+                      style: GoogleFonts.aBeeZee(
+                        fontSize: 15,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        )
+                      ),
+                    ]
+                ),
                 SizedBox(height: 40),
 
                 // sign in field
