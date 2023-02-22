@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatefulWidget{
-  const LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatelessWidget{
+  LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
+  // text editing controllers
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
 
-class _LoginPageState extends State<LoginPage>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -47,11 +46,19 @@ class _LoginPageState extends State<LoginPage>{
                 SizedBox(height: 30),
 
                 // Email field
-                MyTextField(),
+                MyTextField(
+                  controller: usernameController,
+                  hintText: 'Email',
+                  obscureText: false,
+                ),
                 SizedBox(height: 20),
 
                 // Password field
-                MyPasswordField(),
+                MyTextField(
+                  controller: passwordController,
+                  hintText: 'Password',
+                  obscureText: true,
+                ),
                 SizedBox(height: 5),
                 // Forgot password?
                 Row(
