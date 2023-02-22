@@ -164,6 +164,41 @@ class _LoginPageState extends State<LoginPage>{
                 ),
                 SizedBox(height: 30),
                 // Or connect with one of those:
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child:
+                        Divider(
+                          thickness: 1,
+                          color: Colors.black,
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text('Or continue with',
+                          style: GoogleFonts.aBeeZee(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+
+                      Expanded(
+                        child:
+                        Divider(
+                          thickness: 1,
+                          color: Colors.black,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                // google and facebook login
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
