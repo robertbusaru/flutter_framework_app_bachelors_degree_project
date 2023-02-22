@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({Key? key}) : super(key: key);
@@ -106,13 +107,16 @@ class _LoginPageState extends State<LoginPage>{
                 Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                      "Forgot password? ",
-                      style: GoogleFonts.aBeeZee(
-                        fontSize: 15,
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        )
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Text(
+                        "Forgot password? ",
+                        style: GoogleFonts.aBeeZee(
+                          fontSize: 15,
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                          )
+                        ),
                       ),
                     ]
                 ),
