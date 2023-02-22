@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989286033095",
+    "project_id": "dental-clinic-app-busaru",
+    "storage_bucket": "dental-clinic-app-busaru.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989286033095:android:097d3c799b17a3c7d980e2",
+        "android_client_info": {
+          "package_name": "com.example.dentalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989286033095-791h6b4igrjfdo2d4099it3spg8msgno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqILRN52JJ0Rc4_5D6jwJZlnn31AEtxSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989286033095-791h6b4igrjfdo2d4099it3spg8msgno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
