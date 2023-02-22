@@ -1,3 +1,4 @@
+import 'package:dentalapp/components/my_button.dart';
 import 'package:dentalapp/components/my_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +10,10 @@ class LoginPage extends StatelessWidget{
   // text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  // sign user to account method
+  void signInUser() {
 
+  }
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -80,24 +84,8 @@ class LoginPage extends StatelessWidget{
                 const SizedBox(height: 40),
 
                 // sign in field
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(30),),
-                    child: Center(
-                      child: Text('Login',
-                          style: GoogleFonts.aBeeZee(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                      ),
-                    ),
-                  ),
+                MyButton(
+                  onTap: signInUser,
                 ),
                 const SizedBox(height: 10),
 
