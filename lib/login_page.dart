@@ -1,7 +1,7 @@
-import 'package:dentalapp/components/myTextField.dart';
+import 'package:dentalapp/components/my_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatelessWidget{
   LoginPage({super.key});
@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget{
                   height: 100,
                   width: 100,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Welcome \n Login to your account
                 Text('Welcome',
                     style: GoogleFonts.aBeeZee(
@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget{
                       fontWeight: FontWeight.bold,
                     )
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                     'Login to your account',
                     style: GoogleFonts.aBeeZee(
@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget{
                       fontWeight: FontWeight.bold,
                     )
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
 
                 // Email field
                 MyTextField(
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget{
                   hintText: 'Email',
                   obscureText: false,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // Password field
                 MyTextField(
@@ -59,7 +59,7 @@ class LoginPage extends StatelessWidget{
                   hintText: 'Password',
                   obscureText: true,
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 // Forgot password?
                 Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -77,13 +77,13 @@ class LoginPage extends StatelessWidget{
                       ),
                     ]
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
                 // sign in field
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color: Colors.black,
                       border: Border.all(color: Colors.black),
@@ -99,7 +99,7 @@ class LoginPage extends StatelessWidget{
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // Register now
                 Row(
@@ -123,13 +123,13 @@ class LoginPage extends StatelessWidget{
                       ),
                   ],
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 // Or connect with one of those:
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child:
                         Divider(
                           thickness: 1,
@@ -148,7 +148,7 @@ class LoginPage extends StatelessWidget{
                         ),
                       ),
 
-                      Expanded(
+                      const Expanded(
                         child:
                         Divider(
                           thickness: 1,
@@ -158,7 +158,7 @@ class LoginPage extends StatelessWidget{
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // google and facebook login
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +168,7 @@ class LoginPage extends StatelessWidget{
                       height: 40,
                       width: 40,
                     ),
-                    SizedBox(width: 100),
+                    const SizedBox(width: 100),
                     Image.asset(
                       'lib/images/google.png',
                       height: 40,

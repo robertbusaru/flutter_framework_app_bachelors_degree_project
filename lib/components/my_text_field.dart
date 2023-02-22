@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 
 class MyTextField extends StatelessWidget{
-  final controller;
+  final dynamic controller;
   final String hintText;
   final bool obscureText;
 
@@ -27,14 +27,14 @@ class MyTextField extends StatelessWidget{
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: TextField(
             controller: controller,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             ),
             obscureText: obscureText,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: hintText,
-              hintStyle: TextStyle(
+              hintStyle: const TextStyle(
                 color: Colors.white,
                 fontSize: 19,
               ),
