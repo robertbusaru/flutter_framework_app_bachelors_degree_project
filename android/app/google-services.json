@@ -29,6 +29,13 @@
             {
               "client_id": "989286033095-791h6b4igrjfdo2d4099it3spg8msgno.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "989286033095-bug5k2o4u388veontroiq5fmjbrbafao.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dentalapp"
+              }
             }
           ]
         }
