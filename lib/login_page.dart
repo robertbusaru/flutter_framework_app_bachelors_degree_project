@@ -15,7 +15,8 @@ class _LoginPageState extends State<LoginPage>{
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
-          child:Column(
+          child: SingleChildScrollView(
+            child:Column(
             mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage>{
                       fontWeight: FontWeight.bold,
                     )
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: 30),
 
                 // Email field
                 Padding(
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 20),
 
                 // Password field
                 Padding(
@@ -93,14 +94,14 @@ class _LoginPageState extends State<LoginPage>{
                           hintText: 'Password',
                           hintStyle: TextStyle(
                             color: Colors.white,
-                            fontSize: 19,
+                            fontSize: 18,
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 60),
+                SizedBox(height: 40),
 
                 // sign in field
                 Padding(
@@ -114,7 +115,7 @@ class _LoginPageState extends State<LoginPage>{
                     child: Center(
                       child: Text('Login',
                           style: GoogleFonts.aBeeZee(
-                            fontSize: 22,
+                            fontSize: 18,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -146,7 +147,26 @@ class _LoginPageState extends State<LoginPage>{
                       ),
                   ],
                 ),
+                SizedBox(height: 30),
+                // Or connect with one of those:
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'lib/images/facebook.png',
+                      height: 40,
+                      width: 40,
+                    ),
+                    SizedBox(width: 100),
+                    Image.asset(
+                      'lib/images/google.png',
+                      height: 40,
+                      width: 40,
+                    ),
+                  ]
+                ),
               ]),
+          )
         )
       )
     );
