@@ -2,18 +2,24 @@ import 'package:dentalapp/components/my_button.dart';
 import 'package:dentalapp/components/my_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatelessWidget{
   LoginPage({super.key});
 
   // text editing controllers
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  // sign user to account method
-  void signInUser() {
 
+  // sign user to account method
+  void signInUser() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
   }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -51,7 +57,7 @@ class LoginPage extends StatelessWidget{
 
                 // Email field
                 MyTextField(
-                  controller: usernameController,
+                  controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
                 ),
