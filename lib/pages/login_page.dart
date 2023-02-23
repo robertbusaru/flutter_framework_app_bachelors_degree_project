@@ -1,5 +1,7 @@
 import 'package:dentalapp/components/my_button.dart';
+import 'package:dentalapp/components/my_create_now_button.dart';
 import 'package:dentalapp/components/my_text_field.dart';
+import 'package:dentalapp/pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -167,14 +169,14 @@ class _LoginPageState extends State<LoginPage>{
                           fontWeight: FontWeight.bold,
                         )
                     ),
-                      Text(
-                        'Create now',
-                          style: GoogleFonts.aBeeZee(
-                            fontSize: 18,
-                            color: Colors.lightBlueAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                      ),
+                    MyCreateNowButton(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const RegisterPage()),
+                        );
+                      },
+                    ),
                   ],
                 ),
                 const SizedBox(height: 30),
