@@ -42,8 +42,6 @@ class _LoginPageState extends State<LoginPage>{
         password: passwordController.text,
       );
     } on FirebaseAuthException catch (e) {
-      // pop the ciruclar loading screen
-      Navigator.pop(context);
       if (e.code == 'user-not-found'){
         wrongEmailMessage();
       } else if (e.code == 'wrong-password'){

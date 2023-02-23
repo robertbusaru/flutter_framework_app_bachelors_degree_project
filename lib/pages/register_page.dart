@@ -1,9 +1,8 @@
 import 'package:dentalapp/components/my_text_field.dart';
+import 'package:dentalapp/pages/auth_page.dart';
 import 'package:dentalapp/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../components/my_go_back_button.dart';
 import '../components/my_register_button.dart';
 
@@ -19,69 +18,6 @@ class _RegisterPageState extends State<RegisterPage>{
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
-
-  // sign user to account method
-  void signInUser() async {
-
-    // show loading circle
-    showDialog(
-      context: context,
-      builder: (context){
-        return const Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-            backgroundColor: Colors.white,
-          ),
-        );
-      },
-    );
-
-    // try sign in method
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-    } on FirebaseAuthException catch (e) {
-      // pop the ciruclar loading screen
-      Navigator.pop(context);
-      if (e.code == 'user-not-found'){
-        wrongEmailMessage();
-      } else if (e.code == 'wrong-password'){
-        wrongPasswordMessage();
-      }
-    }
-    // pop the circle, loading screen
-    deleteCircle();
-  }
-  // wrong email message function
-  void wrongEmailMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Email not found!'),
-        );
-      },
-    );
-  }
-
-  void deleteCircle(){
-    // pop the ciruclar loading screen
-    Navigator.pop(context);
-  }
-
-  // wrong password message function
-  void wrongPasswordMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Incorrect password, try again!'),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context){
@@ -170,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage>{
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                                  MaterialPageRoute(builder: (context) => const AuthPage()),
                                 );
                               },
                             ),
