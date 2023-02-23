@@ -16,6 +16,7 @@ void signUserOut(){
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation: 0,
         actions: [
           IconButton(
               onPressed: signUserOut,
