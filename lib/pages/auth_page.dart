@@ -1,7 +1,7 @@
 import 'package:dentalapp/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'home_page.dart';
+import 'package:dentalapp/pages/home_page.dart';
 
 class AuthPage extends StatelessWidget{
   const AuthPage({super.key});
@@ -14,7 +14,7 @@ class AuthPage extends StatelessWidget{
         builder: (context, snapshot) {
           // user is logged in
           if (snapshot.hasData){
-            return const HomePage();
+            return HomePage();
           }
           // user is NOT logged in his account
           else {
