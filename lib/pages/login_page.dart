@@ -5,18 +5,78 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatelessWidget{
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage>{
   // text editing controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   // sign user to account method
   void signInUser() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
+
+    // show loading circle
+    showDialog(
+      context: context,
+      builder: (context){
+        return const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+            backgroundColor: Colors.white,
+          ),
+        );
+      },
+    );
+
+    // try sign in method
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      // pop the ciruclar loading screen
+      Navigator.pop(context);
+      if (e.code == 'user-not-found'){
+        wrongEmailMessage();
+      } else if (e.code == 'wrong-password'){
+        wrongPasswordMessage();
+      }
+    }
+    // pop the circle, loading screen
+    deleteCircle();
+  }
+  // wrong email message function
+  void wrongEmailMessage() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text('Email not found!'),
+          );
+        },
+    );
+  }
+
+  void deleteCircle(){
+    // pop the ciruclar loading screen
+    Navigator.pop(context);
+  }
+
+  // wrong password message function
+  void wrongPasswordMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Text('Incorrect password, try again!'),
+        );
+      },
     );
   }
 
