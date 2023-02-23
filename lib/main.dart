@@ -1,9 +1,5 @@
 import 'package:dentalapp/pages/auth_page.dart';
 import 'package:flutter/material.dart';
-<<<<<<<<< Temporary merge branch 1
-import 'package:dentalapp/pages/login_page.dart';
-=========
->>>>>>>>> Temporary merge branch 2
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
