@@ -70,14 +70,17 @@ class HomePage extends StatelessWidget{
                   onPressed: () {
                     // Adăugați aici codul pentru a crea o programare la medic
                   },
-                  icon: const Icon(Icons.schedule, size: 40),
+                  icon: const Icon(Icons.assignment_add, size: 40),
                 ),
                 const SizedBox(width: 20),
                 IconButton(
                   onPressed: () {
-                    // Adăugați aici codul pentru a accesa pagina principală
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
                   },
-                  icon: const Icon(Icons.home, size: 40),
+                  icon: const Icon(Icons.home_filled, size: 40),
                 ),
                 const SizedBox(width: 20),
                 IconButton(
