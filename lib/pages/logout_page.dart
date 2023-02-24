@@ -1,7 +1,8 @@
-import 'package:dentalapp/pages/auth_page.dart';
+import 'package:dentalapp/components/my_logout_button.dart';
 import 'package:dentalapp/pages/home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'auth_page.dart';
 
 class LogoutPage extends StatefulWidget{
   const LogoutPage({super.key});
@@ -15,15 +16,6 @@ class _LogoutPageState extends State<LogoutPage>{
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
-
-  void signUserOut(){
-    FirebaseAuth.instance.signOut();
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-            builder: ((context) => const AuthPage())
-        )
-    );
-  }
 
   @override
   Widget build(BuildContext context){
@@ -51,13 +43,14 @@ class _LogoutPageState extends State<LogoutPage>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(height: 500),
-                          IconButton(
-                            onPressed: signUserOut,
-                            icon: const Icon(Icons.logout),
-                            color: Colors.black,
-                          )
+                            MyLogOutButton(onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const AuthPage()),
+                              );
+                            },
+                          ),
                         ],
-                        // Or connect with one of those:
                       ),
                 )
             )
