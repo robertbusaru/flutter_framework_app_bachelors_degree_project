@@ -1,10 +1,14 @@
 import 'package:dentalapp/components/my_button.dart';
 import 'package:dentalapp/components/my_create_now_button.dart';
+import 'package:dentalapp/components/my_forgot_password_button.dart';
 import 'package:dentalapp/components/my_text_field.dart';
+import 'package:dentalapp/pages/forgot_password.dart';
 import 'package:dentalapp/pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'auth_page.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -129,7 +133,7 @@ class _LoginPageState extends State<LoginPage>{
                   hintText: 'Password',
                   obscureText: true,
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 10),
 
                 // Forgot password?
                 Row(
@@ -137,13 +141,13 @@ class _LoginPageState extends State<LoginPage>{
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: Text(
-                        "Forgot password? ",
-                        style: GoogleFonts.aBeeZee(
-                          fontSize: 15,
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          )
+                        child: MyForgotPasswordButton(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const ForgotPassword()),
+                            );
+                          },
                         ),
                       ),
                     ]
