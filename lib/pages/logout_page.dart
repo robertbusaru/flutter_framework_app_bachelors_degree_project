@@ -1,6 +1,7 @@
 import 'package:dentalapp/components/my_logout_button.dart';
 import 'package:dentalapp/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'auth_page.dart';
 
@@ -46,29 +47,32 @@ class _LogoutPageState extends State<LogoutPage>{
                         ),
                         const SizedBox(height: 30),
                         // Logged in user text
-                        const Text(
+                        Text(
                           'Logged as ',
-                          style: TextStyle(
+                          style: GoogleFonts.aBeeZee(
                             fontSize: 15,
                           ),
                         ),
                         const SizedBox(height: 320),
-                            MyLogOutButton(onTap: () {
-                              Navigator.push(
+
+                        MyLogOutButton(onTap: () {
+                          Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => const AuthPage()),
-                              );
-                            },
-                          ),
+                            );
+                          },
+                        ),
+
                         const SizedBox(height: 60),
-                        const Text(
+                        Text(
                           "© 2023 Robert Busaru",
-                          style: TextStyle(
+                          style: GoogleFonts.aBeeZee(
                             fontSize: 15,
+                            color: Colors.black,
                           ),
                         ),
-                        ],
-                      ),
+                      ],
+                  ),
                 )
             )
         )
