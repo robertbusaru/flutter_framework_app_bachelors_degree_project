@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'logout_page.dart';
 
 class HomePage extends StatelessWidget{
   HomePage({super.key});
@@ -8,9 +9,9 @@ class HomePage extends StatelessWidget{
   final user = FirebaseAuth.instance.currentUser!;
 
 // sign out method
-void signUserOut(){
-  FirebaseAuth.instance.signOut();
-}
+// void signUserOut(){
+//   FirebaseAuth.instance.signOut();
+// }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -19,8 +20,13 @@ void signUserOut(){
         elevation: 0,
         actions: [
           IconButton(
-              onPressed: signUserOut,
-              icon: const Icon(Icons.logout),
+              onPressed: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LogoutPage()),
+                );
+              },
+              icon: const Icon(Icons.more_vert),
               color: Colors.black,
           )
         ],

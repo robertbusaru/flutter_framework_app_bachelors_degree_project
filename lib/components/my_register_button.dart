@@ -14,7 +14,7 @@ class MyRegisterButton extends StatelessWidget{
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        padding: const EdgeInsets.symmetric(horizontal: 50.0),
         child: Container(
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
