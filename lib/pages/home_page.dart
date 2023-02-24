@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget{
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: Text(
-                'Time to a big smile!',
+                "It's time for a smile!",
                 style: GoogleFonts.aBeeZee(
                   fontSize: 32,
                   color: Colors.black,

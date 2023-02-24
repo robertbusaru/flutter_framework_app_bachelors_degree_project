@@ -12,10 +12,6 @@ class LogoutPage extends StatefulWidget{
 }
 
 class _LogoutPageState extends State<LogoutPage>{
-  // text editing controllers
-  final emailController = TextEditingController();
-  final phoneController = TextEditingController();
-  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context){
@@ -42,7 +38,21 @@ class _LogoutPageState extends State<LogoutPage>{
                   child:Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 500),
+                        const Icon(
+                          Icons.account_circle_rounded,
+                          color: Colors.black,
+                          size: 150,
+                          semanticLabel: 'Text to announce in accessibility modes',
+                        ),
+                        const SizedBox(height: 30),
+                        // Logged in user text
+                        const Text(
+                          'Logged as ',
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        const SizedBox(height: 320),
                             MyLogOutButton(onTap: () {
                               Navigator.push(
                                 context,
@@ -50,6 +60,13 @@ class _LogoutPageState extends State<LogoutPage>{
                               );
                             },
                           ),
+                        const SizedBox(height: 60),
+                        const Text(
+                          "© 2023 Robert Busaru",
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
                         ],
                       ),
                 )
