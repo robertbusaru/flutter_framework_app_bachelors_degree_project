@@ -129,7 +129,8 @@ class _LoginPageState extends State<LoginPage>{
                   hintText: 'Password',
                   obscureText: true,
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 15),
+
                 // Forgot password?
                 Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -167,6 +168,7 @@ class _LoginPageState extends State<LoginPage>{
                           fontWeight: FontWeight.bold,
                         )
                     ),
+
                     MyCreateNowButton(
                       onTap: () {
                         Navigator.push(
@@ -177,7 +179,8 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ],
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
+
                 // Or connect with one of those:
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -212,7 +215,8 @@ class _LoginPageState extends State<LoginPage>{
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 25),
+
                 // google and facebook login
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

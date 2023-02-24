@@ -37,7 +37,7 @@ class MyLogOutButton extends StatelessWidget{
             border: Border.all(color: Colors.black),
             borderRadius: BorderRadius.circular(30),),
           child: Center(
-            child: Text('Logout',
+            child: Text('Log out',
               style: GoogleFonts.aBeeZee(
                 fontSize: 18,
                 color: Colors.white,

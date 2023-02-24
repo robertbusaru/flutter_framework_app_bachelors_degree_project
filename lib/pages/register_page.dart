@@ -7,14 +7,17 @@ import '../components/my_go_back_button.dart';
 import '../components/my_register_button.dart';
 
 class RegisterPage extends StatefulWidget{
+
   const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
+
 }
 
 class _RegisterPageState extends State<RegisterPage>{
   // text editing controllers
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
@@ -31,20 +34,22 @@ class _RegisterPageState extends State<RegisterPage>{
                       children: [
                         Image.asset(
                           'lib/images/vector_login.png',
-                          height: 100,
-                          width: 100,
+                          height: 90,
+                          width: 90,
                         ),
                         const SizedBox(height: 30),
 
                         // Register text
                         Text('Register',
                             style: GoogleFonts.aBeeZee(
-                              fontSize: 32,
+                              fontSize: 28,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             )
                         ),
                         const SizedBox(height: 10),
+
+                        // Create a new account text
                         Text(
                             'Create a new account',
                             style: GoogleFonts.aBeeZee(
@@ -55,13 +60,21 @@ class _RegisterPageState extends State<RegisterPage>{
                         ),
                         const SizedBox(height: 30),
 
+                        // Full name field
+                        MyTextField(
+                          controller: nameController,
+                          hintText: 'Full Name',
+                          obscureText: false,
+                        ),
+                        const SizedBox(height: 15),
+
                         // Email field
                         MyTextField(
                           controller: emailController,
                           hintText: 'Email',
                           obscureText: false,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 15),
 
                         // Phone number field
                         MyTextField(
@@ -69,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage>{
                           hintText: 'Your phone number',
                           obscureText: false,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 15),
 
                         // Password field
                         MyTextField(
@@ -112,8 +125,8 @@ class _RegisterPageState extends State<RegisterPage>{
                             ),
                           ],
                         ),
-                        // Register now
                         const SizedBox(height: 30),
+
                         // Or connect with one of those:
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -149,6 +162,7 @@ class _RegisterPageState extends State<RegisterPage>{
                           ),
                         ),
                         const SizedBox(height: 20),
+
                         // google and facebook login
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,

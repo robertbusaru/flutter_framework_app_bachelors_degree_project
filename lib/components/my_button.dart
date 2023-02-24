@@ -22,7 +22,7 @@ class MyButton extends StatelessWidget{
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(30),),
               child: Center(
-                child: Text('Login',
+                child: Text('Sign in',
                   style: GoogleFonts.aBeeZee(
                     fontSize: 18,
                     color: Colors.white,

@@ -95,6 +95,5 @@ class HomePage extends StatelessWidget{
           ],
         ),
       )
-
   );
 }
