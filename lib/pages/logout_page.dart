@@ -66,6 +66,7 @@ class _LogoutPageState extends State<LogoutPage>{
                         const SizedBox(height: 60),
                         Text(
                           "© 2023 Robert Busaru",
+                          textAlign: TextAlign.center,
                           style: GoogleFonts.aBeeZee(
                             fontSize: 15,
                             color: Colors.black,
