@@ -47,12 +47,23 @@ class _LogoutPageState extends State<LogoutPage>{
                         ),
                         const SizedBox(height: 30),
                         // Logged in user text
-                        Text(
-                          'Logged as ',
-                          style: GoogleFonts.aBeeZee(
-                            fontSize: 15,
+                        Text.rich(
+                          TextSpan(
+                            text: 'Logged as: ',
+                            style: GoogleFonts.aBeeZee(
+                              fontSize: 18,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Test user',
+                                style: GoogleFonts.aBeeZee(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
+
                         const SizedBox(height: 320),
 
                         MyLogOutButton(onTap: () {
