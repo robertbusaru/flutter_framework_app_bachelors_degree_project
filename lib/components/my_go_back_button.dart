@@ -16,7 +16,7 @@ class MyGoBackButton extends StatelessWidget{
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
         child: Text(
-          'Login screen',
+          'Return to login',
           style: GoogleFonts.aBeeZee(
             fontSize: 15,
             color: Colors.blue,

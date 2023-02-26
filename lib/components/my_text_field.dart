@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 //import 'package:google_fonts/google_fonts.dart';
 
 class MyTextField extends StatelessWidget{
@@ -27,24 +28,24 @@ class MyTextField extends StatelessWidget{
               offset: const Offset(0, 3),
             ),
           ],
-          color: Colors.black,
-          border: Border.all(color: Colors.black),
+          color: Colors.white,
+          border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: TextField(
             controller: controller,
-            style: const TextStyle(
-              color: Colors.white,
+            style:  GoogleFonts.aBeeZee(
+              color: Colors.black,
             ),
             obscureText: obscureText,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: hintText,
-              hintStyle: const TextStyle(
-                color: Colors.white,
-                fontSize: 19,
+              hintStyle: GoogleFonts.aBeeZee(
+                color: Colors.black,
+                fontSize: 17,
               ),
             ),
           ),

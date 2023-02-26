@@ -19,7 +19,7 @@ class MyForgotPasswordButton extends StatelessWidget{
           'Forgot password?',
           style: GoogleFonts.aBeeZee(
             fontSize: 15,
-            color: Colors.red,
+            color: Colors.blue,
             fontWeight: FontWeight.bold,
           ),
         ),
