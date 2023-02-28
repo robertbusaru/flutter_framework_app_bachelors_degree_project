@@ -1,7 +1,8 @@
+import 'package:dentalapp/pages/logout_page.dart';
+import 'package:dentalapp/pages/scheduling_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'logout_page.dart';
 
 class HomePage extends StatelessWidget{
   HomePage({super.key});
@@ -68,7 +69,10 @@ class HomePage extends StatelessWidget{
               children: [
                 IconButton(
                   onPressed: () {
-                    // Adăugați aici codul pentru a crea o programare la medic
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CreateMedicalMeeting()),
+                    );
                   },
                   icon: const Icon(Icons.assignment_add, size: 40),
                 ),

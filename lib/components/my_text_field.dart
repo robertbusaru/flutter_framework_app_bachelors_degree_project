@@ -44,7 +44,7 @@ class MyTextField extends StatelessWidget{
               border: InputBorder.none,
               hintText: hintText,
               hintStyle: GoogleFonts.aBeeZee(
-                color: Colors.black,
+                color: Colors.grey,
                 fontSize: 17,
               ),
             ),
