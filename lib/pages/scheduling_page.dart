@@ -1,8 +1,7 @@
 import 'package:dentalapp/components/my_scheduling_button.dart';
-import 'package:dentalapp/components/my_text_field.dart';
 import 'package:flutter/material.dart';
-
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'home_page.dart';
 
 class CreateMedicalMeeting extends StatefulWidget{
@@ -16,8 +15,13 @@ class CreateMedicalMeeting extends StatefulWidget{
 
 class _CreateMedicalMeetingState extends State<CreateMedicalMeeting>{
 
-  final emailController = TextEditingController();
-  final phoneController = TextEditingController();
+  DateTime today = DateTime.now();
+
+  void _onDaySelected(DateTime day, DateTime focusedDay){
+    setState(() {
+      today = day;
+    });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -44,23 +48,30 @@ class _CreateMedicalMeetingState extends State<CreateMedicalMeeting>{
                   child:Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Text(
+                          'Plan your schedule',
+                          style: GoogleFonts.aBeeZee(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+
                         // Calendar
+                        content(),
+                        const SizedBox(height: 30),
 
-                        // Name field
-                        MyTextField(
-                          controller: emailController,
-                          hintText: 'Full name',
-                          obscureText: false,
+                        // Selected date field
+                        Text(
+                          "Selected day: ${today.toString().split(" ")[0]}",
+                          style: GoogleFonts.aBeeZee(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        const SizedBox(height: 15),
-
-                        // Phone number field
-                        MyTextField(
-                          controller: phoneController,
-                          hintText: 'Your phone number',
-                          obscureText: false,
-                        ),
-                        const SizedBox(height: 50),
+                        const SizedBox(height: 150),
 
                         // Save button
                         MySchedulingButton(
@@ -78,4 +89,34 @@ class _CreateMedicalMeetingState extends State<CreateMedicalMeeting>{
         )
     );
   }
+
+  Widget content() {
+    return Column(
+      children: [
+        TableCalendar(
+          locale: "en_US",
+          rowHeight: 40,
+          headerStyle: const HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true,
+          ),
+          availableGestures: AvailableGestures.all,
+          focusedDay: today,
+          calendarStyle: CalendarStyle(
+            todayDecoration: BoxDecoration(
+              color: Colors.black,
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.black, width: 2.0),
+            ),
+            weekendTextStyle: const TextStyle(color: Colors.red),
+          ),
+          selectedDayPredicate: (day) => isSameDay(day, today),
+          firstDay: DateTime.now().subtract(const Duration(days: 365)),
+          lastDay: DateTime.now().add(const Duration(days: 365)),
+          onDaySelected: _onDaySelected,
+        )
+      ],
+    );
+  }
+
 }
