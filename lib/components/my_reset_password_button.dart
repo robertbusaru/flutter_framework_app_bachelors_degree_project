@@ -20,7 +20,16 @@ class MyResetPasswordButton extends StatelessWidget{
           decoration: BoxDecoration(
             color: Colors.black,
             border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(30),),
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.8),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: const Offset(0, 5), // changes position of shadow
+              ),
+            ],
+          ),
           child: Center(
             child: Text('Send',
               style: GoogleFonts.aBeeZee(

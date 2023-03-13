@@ -104,9 +104,12 @@ class _CreateMedicalMeetingState extends State<CreateMedicalMeeting>{
           focusedDay: today,
           calendarStyle: CalendarStyle(
             todayDecoration: BoxDecoration(
-              color: Colors.black,
+              color: Colors.grey,
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.black, width: 2.0),
+              border: Border.all(
+                  color: Colors.grey,
+                  width: 2.0
+              ),
             ),
             weekendTextStyle: const TextStyle(color: Colors.red),
           ),
