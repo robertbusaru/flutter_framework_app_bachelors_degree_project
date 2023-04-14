@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'home_page.dart';
 
+
 class CreateMedicalMeeting extends StatefulWidget{
 
   const CreateMedicalMeeting({super.key});
@@ -95,7 +96,7 @@ class _CreateMedicalMeetingState extends State<CreateMedicalMeeting>{
       children: [
         TableCalendar(
           locale: "en_US",
-          rowHeight: 40,
+          rowHeight: 35,
           headerStyle: const HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,

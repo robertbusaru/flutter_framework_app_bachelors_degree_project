@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dentalapp/components/my_text_field.dart';
 import 'package:dentalapp/pages/auth_page.dart';
-import 'package:dentalapp/pages/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../components/my_go_back_button.dart';
@@ -21,6 +22,55 @@ class _RegisterPageState extends State<RegisterPage>{
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  Future signUp() async {
+
+    if (passwordConfirmed()) {
+      // create user
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      // add user details
+      addUserDetails(
+        nameController.text.trim(),
+        emailController.text.trim(),
+        phoneController.text.trim(),
+      );
+    }
+  }
+
+  Future addUserDetails(String fullName, String email, String phoneNumber) async {
+
+    await FirebaseFirestore.instance.collection('users').add({
+        'full name': fullName,
+        'email': email,
+        'phone number': phoneNumber,
+      }
+    );
+
+  }
+
+  bool passwordConfirmed() {
+    if (passwordController.text.trim() == confirmPasswordController.text.trim()){
+      return true;
+    } else {
+      return false;
+    }
+
+  }
 
   @override
   Widget build(BuildContext context){
@@ -32,15 +82,15 @@ class _RegisterPageState extends State<RegisterPage>{
                   child:Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'lib/images/vector_login.png',
-                          height: 90,
-                          width: 90,
-                        ),
+                        // Image.asset(
+                        //   'lib/images/vector_login.png',
+                        //   height: 40,
+                        //   width: 40,
+                        // ),
                         const SizedBox(height: 30),
 
                         // Register text
-                        Text('Register',
+                        Text('Join our services',
                             style: GoogleFonts.aBeeZee(
                               fontSize: 28,
                               color: Colors.black,
@@ -51,9 +101,9 @@ class _RegisterPageState extends State<RegisterPage>{
 
                         // Create a new account text
                         Text(
-                            'Create a new account',
+                            'Register below with your details',
                             style: GoogleFonts.aBeeZee(
-                              fontSize: 24,
+                              fontSize: 19,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             )
@@ -90,19 +140,22 @@ class _RegisterPageState extends State<RegisterPage>{
                           hintText: 'Password',
                           obscureText: true,
                         ),
+                        const SizedBox(height: 15),
+
+                        // Password field
+                        MyTextField(
+                          controller: confirmPasswordController,
+                          hintText: 'Confirm Password',
+                          obscureText: true,
+                        ),
                         const SizedBox(height: 50),
 
                         // sign in field
                         MyRegisterButton(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const LoginPage()),
-                            );
-                          },
+                          onTap: signUp,
                         ),
-
                         const SizedBox(height: 2),
+
                         // Already have an account?
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
