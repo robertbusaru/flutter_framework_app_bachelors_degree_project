@@ -1,5 +1,6 @@
 import 'package:dentalapp/components/my_text_field.dart';
 import 'package:dentalapp/pages/auth_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../components/my_go_back_button.dart';
@@ -17,8 +18,45 @@ class ForgotPassword extends StatefulWidget{
 class _ForgotPasswordState extends State<ForgotPassword>{
 
   final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final newPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
+  Future passwordReset() async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+          email: emailController.text.trim());
+      dialogFunction();
+
+    } on FirebaseAuthException catch (_) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+                content: Text('Try again'),
+            );
+          }
+      );
+    }
+  }
+
+  void dialogFunction() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            elevation: 8.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            content: const Text('Password reset link successfully sent! Check your email!'),
+          );
+        }
+    );
+  }
 
   @override
   Widget build(BuildContext context){
@@ -81,14 +119,8 @@ class _ForgotPasswordState extends State<ForgotPassword>{
                         ),
                         const SizedBox(height: 150),
 
-                        // sign in field
                         MyResetPasswordButton(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const AuthPage()),
-                            );
-                          },
+                          onTap: passwordReset,
                         ),
                         const SizedBox(height: 10),
 
@@ -115,17 +147,17 @@ class _ForgotPasswordState extends State<ForgotPassword>{
                             ),
                           ],
                         ),
-                        const SizedBox(height: 30),
-                        Text(
-                          "© 2023 Robert Busaru",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.aBeeZee(
-                            fontSize: 15,
-                            color: Colors.black,
+                          const SizedBox(height: 30),
+                          Text(
+                            "© 2023 Robert Busaru",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.aBeeZee(
+                              fontSize: 15,
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-
-                      ]),
+                      ]
+                  ),
                 )
             )
         )
