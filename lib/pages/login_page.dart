@@ -39,12 +39,21 @@ class _LoginPageState extends State<LoginPage>{
 
     // try sign in method
     Future<void> checkEmailExistence() async {
+
       String email = emailController.text.trim();
+      String password = passwordController.text;
       List<String> signInMethods = [];
+
       try {
-        signInMethods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+        signInMethods = (await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: email,
+            password: password,
+            )
+        ) as List<String>;
       } on FirebaseAuthException catch (_) {
         // Handle error
+        wrongEmailMessage();
+        return;
       }
       if (signInMethods.isNotEmpty) {
       } else {
