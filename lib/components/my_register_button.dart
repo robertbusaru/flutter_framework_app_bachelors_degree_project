@@ -7,7 +7,7 @@ class MyRegisterButton extends StatelessWidget{
   const MyRegisterButton({
     super.key,
     required this.onTap,
-  });
+    });
 
   @override
   Widget build(BuildContext context){

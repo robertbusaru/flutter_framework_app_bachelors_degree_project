@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../components/my_go_back_button.dart';
 import '../components/my_register_button.dart';
+import 'home_page.dart';
 
 class RegisterPage extends StatefulWidget{
 
@@ -49,6 +50,8 @@ class _RegisterPageState extends State<RegisterPage>{
         emailController.text.trim(),
         phoneController.text.trim(),
       );
+
+      goToHomePage();
     }
   }
 
@@ -61,6 +64,16 @@ class _RegisterPageState extends State<RegisterPage>{
       }
     );
 
+  }
+
+  void goToHomePage() {
+    if (passwordController.text.trim() == confirmPasswordController.text.trim()) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
+    }
   }
 
   bool passwordConfirmed() {
