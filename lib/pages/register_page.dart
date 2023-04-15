@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dentalapp/components/my_text_field.dart';
 import 'package:dentalapp/pages/auth_page.dart';
+import 'package:dentalapp/pages/successfully_created_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../components/my_go_back_button.dart';
 import '../components/my_register_button.dart';
-import 'home_page.dart';
+
 
 class RegisterPage extends StatefulWidget{
 
@@ -51,7 +52,7 @@ class _RegisterPageState extends State<RegisterPage>{
         phoneController.text.trim(),
       );
 
-      goToHomePage();
+      goToHomePage(); // first, goes to the successfully account created screen, after that tot the homepage
     }
   }
 
@@ -70,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage>{
     if (passwordController.text.trim() == confirmPasswordController.text.trim()) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => const AccountCreated(),
         ),
       );
     }
