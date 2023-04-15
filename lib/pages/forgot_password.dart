@@ -45,18 +45,39 @@ class _ForgotPasswordState extends State<ForgotPassword>{
 
   void dialogFunction() {
     showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            elevation: 8.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            content: const Text('Password reset link successfully sent! Check your email!'),
-          );
-        }
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          elevation: 8.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.email,
+                size: 50,
+                color: Colors.black,
+              ),
+              const SizedBox(height: 10),
+
+              Text(
+                'Password reset link successfully sent!\n\nPlease check your email address!',
+                style: GoogleFonts.aBeeZee(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
+
 
   @override
   Widget build(BuildContext context){
