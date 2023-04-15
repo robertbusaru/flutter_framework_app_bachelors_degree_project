@@ -38,48 +38,71 @@ class _LoginPageState extends State<LoginPage>{
     );
 
     // try sign in method
+    Future<void> checkEmailExistence() async {
+      String email = emailController.text.trim();
+      List<String> signInMethods = [];
+      try {
+        signInMethods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+      } on FirebaseAuthException catch (_) {
+        // Handle error
+      }
+      if (signInMethods.isNotEmpty) {
+      } else {
+        wrongEmailMessage();
+      }
+    }
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found'){
-        wrongEmailMessage();
-      } else if (e.code == 'wrong-password'){
-        wrongPasswordMessage();
-      }
+    } on FirebaseAuthException catch (_) {
+      checkEmailExistence();
     }
-    // pop the circle, loading screen
-    deleteCircle();
+
+    deleteCircle();   // pop the circle, loading screen
   }
+
   // wrong email message function
   void wrongEmailMessage() {
     showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(
-            title: Text('Email not found!'),
-          );
-        },
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          elevation: 8.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.email_outlined,
+                size: 50,
+                color: Colors.black,
+              ),
+              const SizedBox(height: 10),
+
+              Text(
+                'Authentication failed\n\nPlease double-check your email and password and try again',
+                style: GoogleFonts.aBeeZee(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
   void deleteCircle(){
     // pop the ciruclar loading screen
     Navigator.pop(context);
-  }
-
-  // wrong password message function
-  void wrongPasswordMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Incorrect password, try again!'),
-        );
-      },
-    );
   }
 
   @override
