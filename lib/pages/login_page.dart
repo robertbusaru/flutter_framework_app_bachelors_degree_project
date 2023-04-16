@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -258,7 +259,7 @@ class _LoginPageState extends State<LoginPage>{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ImageOnButtons(
-                        onTap: () {},
+                        onTap: () => AuthService().signInWithFacebook(),
                         imagePath: 'lib/images/facebook.png'),
 
                     const SizedBox(width: 100),

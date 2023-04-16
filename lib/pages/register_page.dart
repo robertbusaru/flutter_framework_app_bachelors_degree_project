@@ -5,8 +5,10 @@ import 'package:dentalapp/pages/successfully_created_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../components/fb_google_auth_buttons.dart';
 import '../components/my_go_back_button.dart';
 import '../components/my_register_button.dart';
+import '../services/auth_service.dart';
 
 
 class RegisterPage extends StatefulWidget{
@@ -325,17 +327,15 @@ class _RegisterPageState extends State<RegisterPage>{
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset(
-                                'lib/images/facebook.png',
-                                height: 40,
-                                width: 40,
-                              ),
+                              ImageOnButtons(
+                                  onTap: () => AuthService().signInWithFacebook(),
+                                  imagePath: 'lib/images/facebook.png'),
+
                               const SizedBox(width: 100),
-                              Image.asset(
-                                'lib/images/google.png',
-                                height: 40,
-                                width: 40,
-                              ),
+
+                              ImageOnButtons(
+                                  onTap: () => AuthService().signInWithGoogle(),
+                                  imagePath: 'lib/images/google.png')
                             ]
                         ),
                       ]),
