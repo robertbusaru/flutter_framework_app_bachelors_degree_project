@@ -38,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage>{
 
   Future signUp() async {
 
-    if (passwordConfirmed()) {
+    try {
       // create user
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
@@ -46,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage>{
       );
 
       // add user details
-      addUserDetails(
+      await addUserDetails(
         nameController.text.trim(),
         emailController.text.trim(),
         phoneController.text.trim(),
@@ -54,37 +54,118 @@ class _RegisterPageState extends State<RegisterPage>{
 
       goToHomePage(); // first, goes to the successfully account created screen, after that tot the homepage
     }
+    catch (error) {
+      // handle error
+      if (error is FirebaseAuthException) {
+        if (error.code == 'email-already-in-use') {
+          wrongRegisterMessage();
+        }
+        if (passwordController.text.trim().length < 6) {
+          wrongPasswordMessage();
+        }
+      }
+    }
   }
 
   Future addUserDetails(String fullName, String email, String phoneNumber) async {
 
     await FirebaseFirestore.instance.collection('users').add({
-        'full name': fullName,
-        'email': email,
-        'phone number': phoneNumber,
-      }
-    );
-
+      'full name': fullName,
+      'email': email,
+      'phone number': phoneNumber,
+    });
   }
 
   void goToHomePage() {
-    if (passwordController.text.trim() == confirmPasswordController.text.trim()) {
+    if (passwordConfirmed()) {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => const AccountCreated(),
         ),
       );
+    } else {
+      wrongRegisterMessage();
     }
   }
 
   bool passwordConfirmed() {
-    if (passwordController.text.trim() == confirmPasswordController.text.trim()){
-      return true;
-    } else {
-      return false;
-    }
-
+    return passwordController.text.trim() == confirmPasswordController.text.trim();
   }
+
+  void wrongRegisterMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          elevation: 8.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.warning,
+                size: 50,
+                color: Colors.black,
+              ),
+              const SizedBox(height: 10),
+
+              Text(
+                'Registration failed',
+                style: GoogleFonts.aBeeZee(
+                  fontSize: 17,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+
+              Text(
+                '   Please ensure that you have entered a valid email address and a password that is at least 6 characters long. If you already have an account, please try logging in instead',
+                style: GoogleFonts.aBeeZee(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void wrongPasswordMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          elevation: 8.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Password should be at least 6 characters',
+                style: GoogleFonts.aBeeZee(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context){
@@ -161,6 +242,16 @@ class _RegisterPageState extends State<RegisterPage>{
                           controller: confirmPasswordController,
                           hintText: 'Confirm Password',
                           obscureText: true,
+                        ),
+                        const SizedBox(height: 10),
+
+                        Text(
+                            "                           Password should be at least 6 characters",
+                            style: GoogleFonts.aBeeZee(
+                              fontSize: 13,
+                              color: Colors.black.withOpacity(0.5),
+                            ),
+                            textAlign: TextAlign.left,
                         ),
                         const SizedBox(height: 50),
 
