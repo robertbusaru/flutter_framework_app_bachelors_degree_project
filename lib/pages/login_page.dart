@@ -1,9 +1,11 @@
+import 'package:dentalapp/components/fb_google_auth_buttons.dart';
 import 'package:dentalapp/components/my_button.dart';
 import 'package:dentalapp/components/my_create_now_button.dart';
 import 'package:dentalapp/components/my_forgot_password_button.dart';
 import 'package:dentalapp/components/my_text_field.dart';
 import 'package:dentalapp/pages/forgot_password.dart';
 import 'package:dentalapp/pages/register_page.dart';
+import 'package:dentalapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -255,17 +257,15 @@ class _LoginPageState extends State<LoginPage>{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'lib/images/facebook.png',
-                      height: 40,
-                      width: 40,
-                    ),
+                    ImageOnButtons(
+                        onTap: () {},
+                        imagePath: 'lib/images/facebook.png'),
+
                     const SizedBox(width: 100),
-                    Image.asset(
-                      'lib/images/google.png',
-                      height: 40,
-                      width: 40,
-                    ),
+
+                    ImageOnButtons(
+                        onTap: () => AuthService().signInWithGoogle(),
+                        imagePath: 'lib/images/google.png')
                   ]
                 ),
               ]),
