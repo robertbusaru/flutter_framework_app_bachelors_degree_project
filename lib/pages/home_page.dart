@@ -1,3 +1,4 @@
+import 'package:dentalapp/pages/chat_page.dart';
 import 'package:dentalapp/pages/logout_page.dart';
 import 'package:dentalapp/pages/scheduling_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -89,7 +90,10 @@ class HomePage extends StatelessWidget{
                 const SizedBox(width: 20),
                 IconButton(
                   onPressed: () {
-                    // Adăugați aici codul pentru a accesa chat-ul
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ChatScreen()),
+                    );
                   },
                   icon: const Icon(Icons.chat, size: 40),
                 ),
