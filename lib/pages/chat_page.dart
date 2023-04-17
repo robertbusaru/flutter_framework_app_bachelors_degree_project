@@ -150,7 +150,7 @@ class MessageBubble extends StatelessWidget {
               topLeft: Radius.circular(radiusDim),
               topRight: Radius.circular(radiusDim),
               bottomLeft: isCurrentUser ? Radius.circular(radiusDim) : Radius.circular(radiusDim),
-              bottomRight: isCurrentUser ? Radius.circular(radiusDim) : Radius.circular(radiusDim),
+              bottomRight: isCurrentUser ? const Radius.circular(10) : const Radius.circular(10),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
