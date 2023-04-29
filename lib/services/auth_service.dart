@@ -46,4 +46,8 @@ class AuthService {
     }
   }
 
+  signInWithApple() {
+
+  }
+
 }

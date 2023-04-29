@@ -74,7 +74,7 @@ class _LogoutPageState extends State<LogoutPage>{
                           },
                         ),
 
-                        const SizedBox(height: 60),
+                        const SizedBox(height: 40),
                         Text(
                           "© 2023 Robert Busaru",
                           textAlign: TextAlign.center,

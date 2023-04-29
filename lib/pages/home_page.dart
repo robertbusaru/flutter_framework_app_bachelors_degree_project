@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget{
               child: Text(
                 "It's time for a smile!",
                 style: GoogleFonts.aBeeZee(
-                  fontSize: 32,
+                  fontSize: 25,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget{
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
           ],
         ),
       )

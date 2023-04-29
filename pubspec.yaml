@@ -75,6 +75,7 @@ flutter:
       - lib/images/vector_login.png
       - lib/images/facebook.png
       - lib/images/google.png
+      - lib/images/apple-logo.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -176,6 +176,9 @@ class _ForgotPasswordState extends State<ForgotPassword>{
                               fontSize: 15,
                               color: Colors.black,
                             ),
+                            //
+
+
                           ),
                       ]
                   ),

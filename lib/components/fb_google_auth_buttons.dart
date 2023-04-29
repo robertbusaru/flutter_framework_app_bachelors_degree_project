@@ -20,6 +20,14 @@ class ImageOnButtons extends StatelessWidget {
           border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(16),
           color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(1, 4), // changes position of shadow
+            ),
+          ]
         ),
         child: Image.asset(
           imagePath,

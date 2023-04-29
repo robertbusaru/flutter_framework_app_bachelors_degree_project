@@ -17,12 +17,12 @@ class MyTextField extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Container(
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.6),
+              color: Colors.grey.withOpacity(0.9),
               spreadRadius: 5,
               blurRadius: 7,
               offset: const Offset(0, 3),
