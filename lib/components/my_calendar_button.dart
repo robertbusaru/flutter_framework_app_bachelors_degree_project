@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyRegisterButton extends StatelessWidget{
+class MyCalendarButton extends StatelessWidget{
   final Function()? onTap;
 
-  const MyRegisterButton({
+  const MyCalendarButton({
     super.key,
     required this.onTap,
-    });
+  });
 
   @override
   Widget build(BuildContext context){
@@ -26,12 +26,12 @@ class MyRegisterButton extends StatelessWidget{
                 color: Colors.grey.withOpacity(0.8),
                 spreadRadius: 2,
                 blurRadius: 5,
-                offset: const Offset(1, 6),// changes position of shadow
+                offset: const Offset(1, 6), // changes position of shadow
               ),
             ],
           ),
           child: Center(
-            child: Text('Finish action',
+            child: Text('Next step',
               style: GoogleFonts.aBeeZee(
                 fontSize: 18,
                 color: Colors.white,

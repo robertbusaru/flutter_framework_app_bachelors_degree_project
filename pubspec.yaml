@@ -38,7 +38,7 @@ dependencies:
   google_fonts: ^4.0.3
   firebase_auth: ^4.2.9
   firebase_core: ^2.7.0
-  table_calendar: ^3.0.8
+  table_calendar: any
   cloud_firestore: ^4.4.3
   google_sign_in: ^6.1.0
   flutter_facebook_auth: ^5.0.8
@@ -47,6 +47,9 @@ dependencies:
   flutter_datetime_picker: any
   riverpod: any
   provider: any
+  flutter_clean_calendar: any
+  syncfusion_flutter_calendar: any
+  flutter_holo_date_picker: ^1.1.0
 
 dev_dependencies:
   flutter_test:

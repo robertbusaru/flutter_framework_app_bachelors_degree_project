@@ -18,8 +18,8 @@ class MySchedulingButton extends StatelessWidget{
         child: Container(
           padding: const EdgeInsets.all(25),
           decoration: BoxDecoration(
-            color: Colors.black,
-            border: Border.all(color: Colors.black),
+            color: Colors.black.withOpacity(0.8),
+            border: Border.all(color: Colors.black.withOpacity(0.8)),
             borderRadius: BorderRadius.circular(25),
             boxShadow: [
               BoxShadow(
