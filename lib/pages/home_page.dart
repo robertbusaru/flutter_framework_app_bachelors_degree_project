@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget{
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SchedulingPage()),
+                      MaterialPageRoute(builder: (context) => const SchedulingPage()),
                     );
                   },
                   icon: const Icon(Icons.calendar_today, size: 40),

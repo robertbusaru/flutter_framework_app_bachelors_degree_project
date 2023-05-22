@@ -97,55 +97,73 @@ class BookingCard extends StatelessWidget {
     String formattedDate = '${booking.date.day.toString().padLeft(2, '0')}.${booking.date.month.toString().padLeft(2, '0')}.${booking.date.year} | ${booking.date.hour.toString().padLeft(2, '0')}:${booking.date.minute.toString().padLeft(2, '0')} ${booking.date.hour < 12 ? 'AM' : 'PM'}';
 
     return Card(
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      elevation: 10,
-      child: ListTile(
-        title: Text(
+      child: Container(
+        height: 80, // Înălțimea dorită pentru card
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.white, Colors.transparent],
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ListTile(
+          title: Text(
             booking.name,
             style: GoogleFonts.aBeeZee(
-            fontSize: 16,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Date & Time: $formattedDate',
-              style: GoogleFonts.aBeeZee(
-                fontSize: 13.3,
-                color: Colors.black,
-              ),),
-            Text(booking.description),
-          ],
-        ),
-        trailing: InkWell(
-          onTap: () {
-            // Logica pentru selectarea programării
-          },
-          child: Container(
-            decoration: BoxDecoration(
+              fontSize: 16,
               color: Colors.black,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.8),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: const Offset(1, 3),
-                ),
-              ],
+              fontWeight: FontWeight.bold,
             ),
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            child: const Text(
-              'Select',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+          ),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.calendar_today,
+                    size: 15,
+                    color: Colors.black,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'Date & Time: $formattedDate',
+                    style: GoogleFonts.aBeeZee(
+                      fontSize: 13.3,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+              Text(booking.description),
+            ],
+          ),
+          trailing: InkWell(
+            onTap: () {
+              // Logica pentru selectarea programării
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.8),
+                border: Border.all(color: Colors.black.withOpacity(0.8)),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.9),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(1, 4), // changes position of shadow
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 13),
+              child: const Text(
+                'Select',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
