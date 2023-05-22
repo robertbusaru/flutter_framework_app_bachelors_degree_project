@@ -31,7 +31,7 @@ class MyCalendarButton extends StatelessWidget{
             ],
           ),
           child: Center(
-            child: Text('Next step',
+            child: Text('Booking appointment',
               style: GoogleFonts.aBeeZee(
                 fontSize: 18,
                 color: Colors.white,

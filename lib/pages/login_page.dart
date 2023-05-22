@@ -123,162 +123,169 @@ class _LoginPageState extends State<LoginPage>{
         backgroundColor: Colors.white,
         body: SafeArea(
             child: Center(
-                child: SingleChildScrollView(
-                  child:Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'lib/images/vector_login.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                        const SizedBox(height: 10),
-                        // Welcome \n Login to your account
-                        Text('Welcome',
-                            style: GoogleFonts.aBeeZee(
-                              fontSize: 32,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            )
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                            'Login to your account',
-                            style: GoogleFonts.aBeeZee(
-                              fontSize: 24,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            )
-                        ),
-                        const SizedBox(height: 30),
+            child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints)
+    {
+      return SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'lib/images/vector_login.png',
+                height: 100,
+                width: 100,
+              ),
+              const SizedBox(height: 10),
+              // Welcome \n Login to your account
+              Text('Welcome',
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 32,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  )
+              ),
+              const SizedBox(height: 10),
+              Text(
+                  'Login to your account',
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 24,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  )
+              ),
+              const SizedBox(height: 30),
 
-                        // Email field
-                        MyTextField(
-                          controller: emailController,
-                          hintText: 'Email',
-                          obscureText: false,
-                        ),
-                        const SizedBox(height: 20),
+              // Email field
+              MyTextField(
+                controller: emailController,
+                hintText: 'Email',
+                obscureText: false,
+              ),
+              const SizedBox(height: 20),
 
-                        // Password field
-                        MyTextField(
-                          controller: passwordController,
-                          hintText: 'Password',
-                          obscureText: true,
-                        ),
-                        const SizedBox(height: 10),
+              // Password field
+              MyTextField(
+                controller: passwordController,
+                hintText: 'Password',
+                obscureText: true,
+              ),
+              const SizedBox(height: 10),
 
-                        // Forgot password?
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                child: MyForgotPasswordButton(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => const ForgotPassword()),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ]
-                        ),
-                        const SizedBox(height: 40),
+              // Forgot password?
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: MyForgotPasswordButton(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ForgotPassword()),
+                          );
+                        },
+                      ),
+                    ),
+                  ]
+              ),
+              const SizedBox(height: 40),
 
-                        // sign in field
-                        MyButton(
-                          onTap: signInUser,
-                        ),
-                        const SizedBox(height: 10),
+              // sign in field
+              MyButton(
+                onTap: signInUser,
+              ),
+              const SizedBox(height: 10),
 
-                        // Register now
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                                "Don't have an account? ",
-                                style: GoogleFonts.aBeeZee(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                )
-                            ),
-
-                            MyCreateNowButton(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const RegisterPage()),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 50),
-
-                        // Or connect with one of those:
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            children: [
-                              const Expanded(
-                                child:
-                                Divider(
-                                  thickness: 1,
-                                  color: Colors.black,
-                                ),
-                              ),
-
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                child: Text('Or continue with',
-                                  style: GoogleFonts.aBeeZee(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-
-                              const Expanded(
-                                child:
-                                Divider(
-                                  thickness: 1,
-                                  color: Colors.black,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 25),
-
-                        // google and facebook login
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ImageOnButtons(
-                                  onTap: () => AuthService().signInWithFacebook(),
-                                  imagePath: 'lib/images/facebook.png'),
-
-                              const SizedBox(width: 30),
-
-                              ImageOnButtons(
-                                  onTap: () => AuthService().signInWithApple(),
-                                  imagePath: 'lib/images/apple-logo.png'),
-
-                              const SizedBox(width: 30),
-
-                              ImageOnButtons(
-                                  onTap: () => AuthService().signInWithGoogle(),
-                                  imagePath: 'lib/images/google.png')
-                            ]
-                        ),
-                      ]
+              // Register now
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                      "Don't have an account? ",
+                      style: GoogleFonts.aBeeZee(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      )
                   ),
-                )
-            )
+
+                  MyCreateNowButton(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterPage()),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 50),
+
+              // Or connect with one of those:
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child:
+                      Divider(
+                        thickness: 1,
+                        color: Colors.black,
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text('Or continue with',
+                        style: GoogleFonts.aBeeZee(
+                          fontSize: 15,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    const Expanded(
+                      child:
+                      Divider(
+                        thickness: 1,
+                        color: Colors.black,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 25),
+
+              // google and facebook login
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ImageOnButtons(
+                        onTap: () => AuthService().signInWithFacebook(),
+                        imagePath: 'lib/images/facebook.png'),
+
+                    const SizedBox(width: 30),
+
+                    ImageOnButtons(
+                        onTap: () => AuthService().signInWithApple(),
+                        imagePath: 'lib/images/apple-logo.png'),
+
+                    const SizedBox(width: 30),
+
+                    ImageOnButtons(
+                        onTap: () => AuthService().signInWithGoogle(),
+                        imagePath: 'lib/images/google.png')
+                  ]
+              ),
+            ]
+        ),
+      );
+    }
+    )
+        )
         )
     );
   }

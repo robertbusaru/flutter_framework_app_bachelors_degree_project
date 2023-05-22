@@ -21,7 +21,7 @@ class _ChatScreenState extends State<ChatScreen> {
         backgroundColor: Colors.black,
         elevation: 0,
         title: const Text(
-            'Welcome to our Chat Room!',
+            'Contact | Medic chat',
         ),
         centerTitle: true,
       ),

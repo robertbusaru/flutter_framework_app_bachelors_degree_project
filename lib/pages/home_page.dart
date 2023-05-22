@@ -72,10 +72,10 @@ class HomePage extends StatelessWidget{
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const CreateMedicalMeeting()),
+                      MaterialPageRoute(builder: (context) => SchedulingPage()),
                     );
                   },
-                  icon: const Icon(Icons.assignment_add, size: 40),
+                  icon: const Icon(Icons.calendar_today, size: 40),
                 ),
                 const SizedBox(width: 20),
                 IconButton(
@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget{
                       MaterialPageRoute(builder: (context) => HomePage()),
                     );
                   },
-                  icon: const Icon(Icons.home_filled, size: 40),
+                  icon: const Icon(Icons.home_outlined, size: 45),
                 ),
                 const SizedBox(width: 20),
                 IconButton(
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget{
                       MaterialPageRoute(builder: (context) => const ChatScreen()),
                     );
                   },
-                  icon: const Icon(Icons.chat, size: 40),
+                  icon: const Icon(Icons.chat_bubble_outline_rounded, size: 40),
                 ),
               ],
             ),
