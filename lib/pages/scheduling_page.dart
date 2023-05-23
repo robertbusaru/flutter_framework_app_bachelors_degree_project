@@ -98,7 +98,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
                   child: Container(
                     width: 80,
                     decoration: BoxDecoration(
-                      color: isSelected ? Colors.black: Colors.transparent,
+                      color: isSelected ? Colors.black.withOpacity(0.9): Colors.transparent,
                       border: Border.all(color: Colors.white.withOpacity(0.8)),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: const [
@@ -187,7 +187,7 @@ class BookingCard extends StatelessWidget {
         height: 80, // Înălțimea dorită pentru card
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.8),
-          border: Border.all(color: Colors.white.withOpacity(0.8)),
+          border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -239,14 +239,6 @@ class BookingCard extends StatelessWidget {
                 color: Colors.black.withOpacity(0.8),
                 border: Border.all(color: Colors.black.withOpacity(0.8)),
                 borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.9),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(1, 4), // changes position of shadow
-                  ),
-                ],
               ),
               padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 13),
               child: const Text(
