@@ -35,7 +35,7 @@ class AccountCreated extends StatelessWidget{
 
                 // Create a new account text
                 Text(
-                    'Your account has been successfully created',
+                    'New account successfully created',
                     style: GoogleFonts.aBeeZee(
                       fontSize: 19,
                       color: Colors.black,

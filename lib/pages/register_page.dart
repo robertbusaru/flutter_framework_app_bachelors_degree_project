@@ -107,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage>{
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(
-                Icons.warning,
+                Icons.warning_amber_outlined,
                 size: 50,
                 color: Colors.black,
               ),
@@ -248,7 +248,7 @@ class _RegisterPageState extends State<RegisterPage>{
                         const SizedBox(height: 10),
 
                         Text(
-                            "                           Password should be at least 6 characters",
+                            "                Password should be at least 6 characters",
                             style: GoogleFonts.aBeeZee(
                               fontSize: 13,
                               color: Colors.black.withOpacity(0.5),

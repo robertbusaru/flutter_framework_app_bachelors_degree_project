@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class SchedulingPage extends StatefulWidget {
   const SchedulingPage({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class SchedulingPage extends StatefulWidget {
 class _SchedulingPageState extends State<SchedulingPage> {
 
   List<Booking> bookings = [];
+  DateTime selectedDate = DateTime.now();
 
   @override
   void initState() {
@@ -52,8 +54,20 @@ class _SchedulingPageState extends State<SchedulingPage> {
     }
   }
 
+  List<Booking> getBookingsForSelectedDate() {
+    // Filtrăm programările în funcție de data selectată
+    return bookings.where((booking) {
+      return booking.date.year == selectedDate.year &&
+          booking.date.month == selectedDate.month &&
+          booking.date.day == selectedDate.day;
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    List<Booking> selectedDateBookings = getBookingsForSelectedDate();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black.withOpacity(0.9),
@@ -61,14 +75,86 @@ class _SchedulingPageState extends State<SchedulingPage> {
         title: const Text('Available appointments'),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        itemCount: bookings.length,
-        itemBuilder: (BuildContext context, int index) {
-          Booking booking = bookings[index];
-          return BookingCard(
-            booking: booking,
-          );
-        },
+      body: Column(
+        children: [
+          SizedBox(
+            height: 100, // Înălțimea dorită pentru lista de zile din calendar
+            child: ListView.builder(
+              padding: const EdgeInsets.only(top: 10),
+              scrollDirection: Axis.horizontal,
+              itemCount: 7, // Numărul de zile din calendar
+              itemBuilder: (BuildContext context, int index) {
+                DateTime date = DateTime.now().add(Duration(days: index));
+                bool isSelected = date.year == selectedDate.year &&
+                    date.month == selectedDate.month &&
+                    date.day == selectedDate.day;
+
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedDate = date; // Actualizăm data selectată
+                    });
+                  },
+                  child: Container(
+                    width: 80,
+                    decoration: BoxDecoration(
+                      color: isSelected ? Colors.black: Colors.transparent,
+                      border: Border.all(color: Colors.white.withOpacity(0.8)),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.white,
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(1, 6),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child:
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateFormat.MMM().format(date),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: isSelected ? Colors.white : Colors.black,
+                              ),
+                            ),
+                            Text(
+                              '${date.day}',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: isSelected ? Colors.white : Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          Expanded(
+            child: ListView.builder(
+              itemCount: selectedDateBookings.length,
+              itemBuilder: (BuildContext context, int index) {
+                Booking booking = selectedDateBookings[index];
+                return BookingCard(
+                  booking: booking,
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -127,7 +213,7 @@ class BookingCard extends StatelessWidget {
               Row(
                 children: [
                   const Icon(
-                    Icons.calendar_today,
+                    Icons.access_time_outlined,
                     size: 15,
                     color: Colors.black,
                   ),
