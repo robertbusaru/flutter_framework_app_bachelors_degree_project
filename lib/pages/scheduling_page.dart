@@ -100,12 +100,17 @@ class BookingCard extends StatelessWidget {
       child: Container(
         height: 80, // Înălțimea dorită pentru card
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.white, Colors.transparent],
-          ),
+          color: Colors.white.withOpacity(0.8),
+          border: Border.all(color: Colors.white.withOpacity(0.8)),
           borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.8),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(1, 6), // changes position of shadow
+            ),
+          ],
         ),
         child: ListTile(
           title: Text(
