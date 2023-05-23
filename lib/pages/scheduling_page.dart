@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -70,7 +71,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black.withOpacity(0.9),
+        backgroundColor: Colors.black,
         elevation: 25,
         title: const Text('Available appointments'),
         centerTitle: true,
@@ -98,17 +99,8 @@ class _SchedulingPageState extends State<SchedulingPage> {
                   child: Container(
                     width: 80,
                     decoration: BoxDecoration(
-                      color: isSelected ? Colors.black.withOpacity(0.9): Colors.transparent,
-                      border: Border.all(color: Colors.white.withOpacity(0.8)),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.white,
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(1, 6),
-                        ),
-                      ],
+                      color: isSelected ? Colors.greenAccent: Colors.transparent,
+                      borderRadius: BorderRadius.circular(7),
                     ),
                     child: Center(
                       child:
@@ -121,7 +113,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: isSelected ? Colors.white : Colors.black,
+                                color: isSelected ? Colors.black : Colors.black,
                               ),
                             ),
                             Text(
@@ -129,7 +121,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: isSelected ? Colors.white : Colors.black,
+                                color: isSelected ? Colors.black : Colors.black,
                               ),
                             ),
                           ],
@@ -177,6 +169,119 @@ class BookingCard extends StatelessWidget {
 
   const BookingCard({Key? key, required this.booking}) : super(key: key);
 
+
+  void _showConfirmationDialog(BuildContext context) {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+
+    if (currentUser != null) {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  'Are you sure about your selection?',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white, backgroundColor: Colors.black,
+                      ),
+                      child: const Text('Cancel'),
+                    ),
+
+                    ElevatedButton(
+                      onPressed: () async {
+                        String bookingName = booking.name;
+                        String phoneNumber = currentUser.phoneNumber ?? '';
+                        String userName = currentUser.displayName ?? '';
+
+                        // Salvează în colecția "history" în Firebase
+                        await FirebaseFirestore.instance.collection('history').doc(bookingName).set({
+                          'bookingName': bookingName,
+                          'phoneNumber': phoneNumber,
+                          'userName': userName,
+                        });
+
+                        // Actualizează starea aplicației / efectuează alte acțiuni necesare
+
+                        Navigator.of(context).pop();
+                        _showCongratulationsModal(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.black, backgroundColor: Colors.greenAccent,
+                      ),
+                      child: const Text('Confirm'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
+  }
+
+  void _showCongratulationsModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(
+                Icons.check_circle,
+                color: Colors.greenAccent,
+                size: 100,
+              ),
+              SizedBox(height: 12),
+
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Congratulations!',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SizedBox(height: 5,),
+
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Your booking has been successfully confirmed',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -186,12 +291,12 @@ class BookingCard extends StatelessWidget {
       child: Container(
         height: 80, // Înălțimea dorită pentru card
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.8),
+          color: Colors.white,
           border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.8),
+              color: Colors.grey.withOpacity(0.4),
               spreadRadius: 2,
               blurRadius: 5,
               offset: const Offset(1, 6), // changes position of shadow
@@ -232,19 +337,27 @@ class BookingCard extends StatelessWidget {
           ),
           trailing: InkWell(
             onTap: () {
-              // Logica pentru selectarea programării
+              _showConfirmationDialog(context);
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.8),
-                border: Border.all(color: Colors.black.withOpacity(0.8)),
+                color: Colors.white,
+                border: Border.all(color: Colors.white),
                 borderRadius: BorderRadius.circular(10),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(1, 4),
+                  ),
+                ],
               ),
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 13),
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
               child: const Text(
                 'Select',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
