@@ -169,6 +169,25 @@ class BookingCard extends StatelessWidget {
 
   const BookingCard({Key? key, required this.booking}) : super(key: key);
 
+  Future<bool> isBookingInHistory(String bookingName) {
+    return FirebaseFirestore.instance
+        .collection('history')
+        .where('bookingName', isEqualTo: bookingName)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.isNotEmpty;
+    });
+  }
+
+  void checkBookingAndShowModal(BuildContext context) async {
+    bool existsInHistory = await isBookingInHistory(booking.name);
+
+    if (existsInHistory) {
+      showReservationFailedModal(context); // Apelăm funcția de afișare a modalului de rezervare eșuată
+    } else {
+      _showCongratulationsModal(context); // Apelăm funcția de afișare a modalului de felicitare
+    }
+  }
 
   void _showConfirmationDialog(BuildContext context) {
     User? currentUser = FirebaseAuth.instance.currentUser;
@@ -218,7 +237,7 @@ class BookingCard extends StatelessWidget {
                         // Actualizează starea aplicației / efectuează alte acțiuni necesare
 
                         Navigator.of(context).pop();
-                        _showCongratulationsModal(context);
+                        checkBookingAndShowModal(context);
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black, backgroundColor: Colors.greenAccent,
@@ -233,6 +252,48 @@ class BookingCard extends StatelessWidget {
         },
       );
     }
+  }
+
+  void showReservationFailedModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(
+                Icons.error_outlined,
+                size: 100,
+                color: Colors.red,
+              ),
+              SizedBox(height: 16),
+
+              Text(
+                'Reservation Failed',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 16),
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'The event has been already confirmed',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+        );
+      },
+    );
   }
 
   void _showCongratulationsModal(BuildContext context) {
@@ -261,7 +322,7 @@ class BookingCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 5,),
+              SizedBox(height: 5),
 
               Align(
                 alignment: Alignment.center,
