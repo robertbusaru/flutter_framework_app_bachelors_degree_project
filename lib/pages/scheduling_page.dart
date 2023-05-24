@@ -191,7 +191,6 @@ class BookingCard extends StatelessWidget {
 
   void _showConfirmationDialog(BuildContext context) {
     User? currentUser = FirebaseAuth.instance.currentUser;
-
     if (currentUser != null) {
       showModalBottomSheet(
         context: context,
@@ -235,7 +234,6 @@ class BookingCard extends StatelessWidget {
                         });
 
                         // Actualizează starea aplicației / efectuează alte acțiuni necesare
-
                         Navigator.of(context).pop();
                         checkBookingAndShowModal(context);
                       },
@@ -264,11 +262,11 @@ class BookingCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: const [
               Icon(
-                Icons.error_outlined,
+                Icons.error_outline,
                 size: 100,
                 color: Colors.red,
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 15),
 
               Text(
                 'Reservation Failed',
@@ -277,7 +275,7 @@ class BookingCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 12),
               Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -288,6 +286,8 @@ class BookingCard extends StatelessWidget {
                   ),
                 ),
               ),
+
+              SizedBox(height: 15),
 
             ],
           ),
@@ -341,6 +341,49 @@ class BookingCard extends StatelessWidget {
     );
   }
 
+  Widget checkBookingAndShowAvailability(BuildContext context) {
+    return FutureBuilder<bool>(
+      future: isBookingInHistory(booking.name),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Se afișează un indicator de încărcare în timp ce se verifică disponibilitatea
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          // Se afișează un mesaj de eroare în cazul în care apare o eroare
+          return Text(
+            'Error: ${snapshot.error}',
+            style: const TextStyle(
+              fontSize: 14,
+              color: Colors.black,
+            ),
+          );
+        } else {
+          bool existsInHistory = snapshot.data ?? false;
+
+          if (existsInHistory) {
+            return const Text(
+              'Unavailable',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.redAccent,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          } else {
+            return const Text(
+              'Available',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.greenAccent,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          }
+        }
+      },
+    );
+  }
+
 
 
   @override
@@ -384,6 +427,7 @@ class BookingCard extends StatelessWidget {
                     color: Colors.black,
                   ),
                   const SizedBox(width: 4),
+
                   Text(
                     'Date & Time: $formattedDate',
                     style: GoogleFonts.aBeeZee(
@@ -391,9 +435,18 @@ class BookingCard extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
+
+                  const SizedBox(width: 4),
+
+
                 ],
               ),
+
               Text(booking.description),
+
+              const SizedBox(width: 5),
+
+              checkBookingAndShowAvailability(context),
             ],
           ),
           trailing: InkWell(

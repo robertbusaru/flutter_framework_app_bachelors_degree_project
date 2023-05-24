@@ -8,7 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LogoutPage extends StatefulWidget {
-  const LogoutPage({Key? key});
+  const LogoutPage({super.key});
 
   @override
   State<LogoutPage> createState() => _LogoutPageState();
