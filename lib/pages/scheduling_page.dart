@@ -232,10 +232,9 @@ class BookingCard extends StatelessWidget {
                           'phoneNumber': phoneNumber,
                           'userName': userName,
                         });
-
                         // Actualizează starea aplicației / efectuează alte acțiuni necesare
-                        Navigator.of(context).pop();
                         checkBookingAndShowModal(context);
+                        Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black, backgroundColor: Colors.greenAccent,
@@ -286,9 +285,7 @@ class BookingCard extends StatelessWidget {
                   ),
                 ),
               ),
-
               SizedBox(height: 15),
-
             ],
           ),
         );
@@ -384,8 +381,6 @@ class BookingCard extends StatelessWidget {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -435,17 +430,12 @@ class BookingCard extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
-
                   const SizedBox(width: 4),
-
-
                 ],
               ),
 
               Text(booking.description),
-
               const SizedBox(width: 5),
-
               checkBookingAndShowAvailability(context),
             ],
           ),
