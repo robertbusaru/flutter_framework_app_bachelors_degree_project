@@ -1,6 +1,15 @@
 # dentalapp
 
-A new Flutter project.
+The current project represented my bachelor's degree project. This app serves as a cool helping hand for a dental office in order to increase the management for the appointments. An user can:
+- Login using Google / Facebook providers
+- Sign up
+- Chat with the personal
+- Calendar and appointments
+- Logout and homepage
+
+Created using:
+- Flutter framework
+- Firebase 
 
 ## Getting Started
 
